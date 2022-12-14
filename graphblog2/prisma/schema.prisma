@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+//这个是链接数据库的
+
+// 在这里面开始写数据结构
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  // image     String
+  published Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+  // 这里加上外键，好像是下面要加上和外键的对应关系
+  // authorId 是外键 authorId 要根据user 的Id 来
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     Post[]
+  // 这里是和上面的对应关系 
+  profile   Profile?
+  // 这个的意思是对应下面的profile的，？的意思是可以不创建profile 
+  //但是下面的profile一旦创建要根据user
+}
+
+model Profile {
+  id        Int      @id @default(autoincrement())
+  bio       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
+}

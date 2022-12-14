@@ -1,0 +1,7 @@
+npm istall @apollo/client
+npm install graphql
+npm install react-router-dom
+npm install react-bootstrap
+npm install bootstrap
+npm install @restart/ui
+ npm install react-router

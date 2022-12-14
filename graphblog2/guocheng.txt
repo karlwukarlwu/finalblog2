@@ -1,0 +1,73 @@
+npm init -y
+初始化文件
+npm install apollo-server graphql
+安装graphql apollo-server
+npm install -D typescript ts-node-dev
+安装 typescript 和测试dev
+
+运行 npm run start:dev(这个是我们在package.json写好的名词)
+
+解决Windows不兼容问题
+npm install -g typescript
+npm install -g ts-node
+npm install -g cross-env save-dev
+package.json写这行
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "cross-env nodemon --watch './**/*.ts' --exec 'ts-node' src/index.ts"
+  },
+
+用的数据库heroku提供的
+
+安装prisma
+npm install prisma
+
+启动prisma
+npx prisma init
+启动的时候一定要停下graphql的运行
+
+prisma 的运行会产生schema文件
+.env 文件是prisma的配置文件 不要上传
+
+去heroku拿到数据库的url 写在.env 里面
+Database Credentials
+Get credentials for manual connections to this database.
+在这个页面下面
+
+在prisma里面写sql的增删改查文件
+
+在schema里面写好结构以后，push到数据库
+npx prisma db push
+
+push 以后想看看数据库结构
+npx prisma studio
+
+
+@types的都是typescript特有的要转译的安装包
+
+更新数据结构
+npx prisma db push
+npx prisma studio
+
+用这个检验邮箱 密码
+npm install validator
+npm install @types/validator
+
+对密码进行加密
+npm install bcryptjs
+npm install @types/bcryptjs
+
+拿网络token的方法
+ npm install jsonwebtoken
+ npm install @types/jsonwebtoken
+
+ 在.env里面写你要用于token 加密的加密钥匙
+ 很麻烦，这里没有细说
+
+
+https://jwt.io/
+这个网站可以解密你的token 牛的
+
+
+直接归类查询 把所有有相同id 的给吸过来
+npm install dataloader
